@@ -40,7 +40,8 @@ public class UserItemService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-        save(new UserItem(1L, LocalDate.of(2020,5,30), LocalDate.of(2020,5,30)));
+       // save(new UserItem(1L, LocalDate.of(2020,5,30), LocalDate.of(2020,5,30)));
+
     }
 
 }

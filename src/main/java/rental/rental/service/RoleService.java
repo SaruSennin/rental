@@ -42,5 +42,6 @@ public class RoleService {
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
         save(new Role(1L,"admin"));
+        save(new Role(2L,"user"));
     }
 }

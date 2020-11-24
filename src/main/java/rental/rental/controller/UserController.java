@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import rental.rental.entity.User;
 import rental.rental.service.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +29,12 @@ public class UserController {
         return  userService.findById(index);
     }
 
+    @GetMapping("/name")
+    public List<User> getByName(@RequestParam String userName) { return userService.findByName(userName);    }
+
+    @GetMapping("/name/letter")
+    public List<User> getByFirstLetter(@RequestParam String firstLetter) { return userService.findByFirstLetter(firstLetter);    }
+
     @PostMapping
     public User addUser (@RequestBody User user){
         return userService.save(user);
@@ -42,6 +49,8 @@ public class UserController {
     public void deleteUser(@RequestParam Long index){
          userService.deleteById(index);
     }
+
+
 }
 
 
