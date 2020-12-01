@@ -11,8 +11,14 @@ public class User {
     @OneToMany(mappedBy="user")
     private List<Role> roles;
 
-    @OneToMany(mappedBy="user")
-    private List<UserItem> userItems;
+    @ManyToMany
+    private List<Item> itemList;
+
+    @ManyToMany
+    @JoinTable(name = "USER_ITEM",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_item"))
+    private List<Item> itemsUser;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,20 +40,21 @@ public class User {
         this.dateOfRegistration = dateOfRegistration;
     }
 
-    public User(List<Role> roles, List<UserItem> userItems, Long id, String name, String surname, Boolean locked, byte[] photo, LocalDate dateOfRegistration) {
-        this.roles = roles;
-        this.userItems = userItems;
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.locked = locked;
-        this.photo = photo;
-        this.dateOfRegistration = dateOfRegistration;
+    public List<Item> getItemList() {
+        return itemList;
     }
 
-    public List<UserItem> getUserItems() { return userItems; }
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
 
-    public void setUserItems(List<UserItem> userItems) { this.userItems = userItems; }
+    public List<Item> getItemsUser() {
+        return itemsUser;
+    }
+
+    public void setItemsUser(List<Item> itemsUser) {
+        this.itemsUser = itemsUser;
+    }
 
     public List<Role> getRoles() { return roles; }
 

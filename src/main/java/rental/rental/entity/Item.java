@@ -11,8 +11,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy="item")
-    private List<UserItem> userItems;
+    @ManyToMany(mappedBy = "itemsUser")
+    private List<User> userList;
 
     private String name;
     private String author;
@@ -31,19 +31,13 @@ public class Item {
         this.photo = photo;
     }
 
-    public Item(Long id, List<UserItem> userItems, String name, String author, String description, LocalDate dateAdded, byte[] photo) {
-        this.id = id;
-        this.userItems = userItems;
-        this.name = name;
-        this.author = author;
-        this.description = description;
-        this.dateAdded = dateAdded;
-        this.photo = photo;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public List<UserItem> getUserItems() { return userItems; }
-
-    public void setUserItems(List<UserItem> userItems) { this.userItems = userItems; }
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
 
     public Long getId() {
         return id;
