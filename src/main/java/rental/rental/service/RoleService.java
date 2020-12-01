@@ -5,10 +5,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import rental.rental.entity.Role;
-import rental.rental.entity.UserItem;
 import rental.rental.reposytory.RoleRepository;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
