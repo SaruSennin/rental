@@ -11,7 +11,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "itemsUser")
+    @OneToMany(mappedBy = "itemsUser")
     private List<User> userList;
 
     private String name;

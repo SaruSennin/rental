@@ -1,6 +1,8 @@
 package rental.rental.entity;
 
 
+import org.hibernate.mapping.Join;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -11,12 +13,9 @@ public class User {
     @OneToMany(mappedBy="user")
     private List<Role> roles;
 
-    @ManyToMany
-    private List<Item> itemList;
-
-    @ManyToMany
+    @OneToMany
     @JoinTable(name = "USER_ITEM",
-            joinColumns = @JoinColumn(name = "id_user"),
+            joinColumns =@JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_item"))
     private List<Item> itemsUser;
 
@@ -38,14 +37,6 @@ public class User {
         this.locked = locked;
         this.photo = photo;
         this.dateOfRegistration = dateOfRegistration;
-    }
-
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
     }
 
     public List<Item> getItemsUser() {

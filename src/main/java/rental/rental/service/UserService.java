@@ -37,6 +37,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void addItemToUser(Long idUser, Long idItem){ userRepository.addItemToUser(idUser,idItem);    }
+
     public List<User> findByName(String userName){
         return userRepository.findByName(userName);
     }

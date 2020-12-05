@@ -35,6 +35,9 @@ public class UserController {
     @GetMapping("/name/letter")
     public List<User> getByFirstLetter(@RequestParam String firstLetter) { return userService.findByFirstLetter(firstLetter);    }
 
+    @GetMapping("/userItem")
+    public void addItemToUser(@RequestParam Long idUser, @RequestParam Long idItem) { userService.addItemToUser(idUser,idItem);    }
+
     @PostMapping
     public User addUser (@RequestBody User user){
         return userService.save(user);
