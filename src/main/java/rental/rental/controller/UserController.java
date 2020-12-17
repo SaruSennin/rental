@@ -20,26 +20,32 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public Iterable<User> getAll(){
+    public Iterable<User> getAll() {
         return userService.findAll();
     }
 
     @GetMapping
-    public Optional<User> getById(@RequestParam Long index){
-        return  userService.findById(index);
+    public Optional<User> getById(@RequestParam Long index) {
+        return userService.findById(index);
     }
 
     @GetMapping("/name")
-    public List<User> getByName(@RequestParam String userName) { return userService.findByName(userName);    }
+    public List<User> getByName(@RequestParam String userName) {
+        return userService.findByName(userName);
+    }
 
     @GetMapping("/name/letter")
-    public List<User> getByFirstLetter(@RequestParam String firstLetter) { return userService.findByFirstLetter(firstLetter);    }
+    public List<User> getByFirstLetter(@RequestParam String firstLetter) {
+        return userService.findByFirstLetter(firstLetter);
+    }
 
     @GetMapping("/userItem")
-    public void addItemToUser(@RequestParam Long idUser, @RequestParam Long idItem) { userService.addItemToUser(idUser,idItem);    }
+    public void addItemToUser(@RequestParam Long idUser, @RequestParam Long idItem) {
+        userService.addItemToUser(idUser, idItem);
+    }
 
     @PostMapping
-    public User addUser (@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         return userService.save(user);
     }
 
@@ -49,11 +55,9 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestParam Long index){
-         userService.deleteById(index);
+    public void deleteUser(@RequestParam Long index) {
+        userService.deleteById(index);
     }
-
-
 }
 
 

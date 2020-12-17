@@ -3,33 +3,33 @@ package rental.rental.entity;
 import javax.persistence.*;
 
 @Entity
-public class Role {
+public class Type {
 
     @OneToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "ITEM_ID")
+    private Item item;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String roleName;
+    private String name;
     private Boolean isAvailable;
 
-    public Role() {
+    public Type() {
     }
 
-    public Role(String roleName, Boolean isAvailable) {
-        this.roleName = roleName;
+    public Type(String name, Boolean isAvailable) {
+        this.name = name;
         this.isAvailable = isAvailable;
     }
 
-    public User getUser() {
-        return user;
+    public Item getItem() {
+        return item;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Long getId() {
@@ -40,12 +40,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getAvailable() {

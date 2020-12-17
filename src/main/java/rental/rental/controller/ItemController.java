@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import rental.rental.entity.Item;
 import rental.rental.service.ItemService;
 
-
 import java.util.Optional;
 
 @RestController
@@ -20,27 +19,27 @@ public class ItemController {
     }
 
     @GetMapping("/all")
-    public Iterable<Item> getAll(){
+    public Iterable<Item> getAll() {
         return itemService.findAll();
     }
 
     @GetMapping
-    public Optional<Item> getById(@RequestParam Long index){
+    public Optional<Item> getById(@RequestParam Long index) {
         return itemService.findById(index);
     }
 
     @PostMapping
-    public Item addItem(@RequestBody Item item){
+    public Item addItem(@RequestBody Item item) {
         return itemService.save(item);
     }
 
     @PutMapping
-    public  Item updateItem(@RequestBody Item item){
-        return  itemService.save(item);
+    public Item updateItem(@RequestBody Item item) {
+        return itemService.save(item);
     }
 
     @DeleteMapping
-    public void deleteItem(@RequestParam Long index){
+    public void deleteItem(@RequestParam Long index) {
         itemService.deleteById(index);
     }
 

@@ -1,8 +1,5 @@
 package rental.rental.entity;
 
-
-import org.hibernate.mapping.Join;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -10,46 +7,71 @@ import java.util.List;
 @Entity
 public class User {
 
-    @OneToMany(mappedBy="user")
-    private List<Role> roles;
+    @OneToOne(mappedBy = "user")
+    private Role roles;
 
-    @OneToMany
-    @JoinTable(name = "USER_ITEM",
-            joinColumns =@JoinColumn(name = "id_user"),
-            inverseJoinColumns = @JoinColumn(name = "id_item"))
-    private List<Item> itemsUser;
+    @OneToMany(mappedBy = "user")
+    private List<RentHistory> rentHistories;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserItem> userItems;
+
+//    @OneToMany
+//    @JoinTable(name = "USER_ITEM",
+//            joinColumns = @JoinColumn(name = "id_user"),
+//            inverseJoinColumns = @JoinColumn(name = "id_item"))
+//    private List<Item> itemsUser;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String login;
+    private String password;
     private String name;
     private String surname;
     private Boolean locked;
     private byte[] photo;
     private LocalDate dateOfRegistration;
+    private Boolean isAvailable;
 
-    public User() { }
+    public User() {
+    }
 
-    public User(Long id, String name, String surname, Boolean locked, byte[] photo, LocalDate dateOfRegistration) {
-        this.id = id;
+    public User(String login, String password, String name, String surname, Boolean locked, byte[] photo, LocalDate dateOfRegistration, Boolean isAvailable) {
+        this.login = login;
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.locked = locked;
         this.photo = photo;
         this.dateOfRegistration = dateOfRegistration;
+        this.isAvailable = isAvailable;
     }
 
-    public List<Item> getItemsUser() {
-        return itemsUser;
+    public Role getRoles() {
+        return roles;
     }
 
-    public void setItemsUser(List<Item> itemsUser) {
-        this.itemsUser = itemsUser;
+    public void setRoles(Role roles) {
+        this.roles = roles;
     }
 
-    public List<Role> getRoles() { return roles; }
+    public List<RentHistory> getRentHistories() {
+        return rentHistories;
+    }
 
-    public void setRoles(List<Role> roles) { this.roles = roles; }
+    public void setRentHistories(List<RentHistory> rentHistories) {
+        this.rentHistories = rentHistories;
+    }
+
+    public List<UserItem> getUserItems() {
+        return userItems;
+    }
+
+    public void setUserItems(List<UserItem> userItems) {
+        this.userItems = userItems;
+    }
 
     public Long getId() {
         return id;
@@ -57,6 +79,22 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -97,5 +135,13 @@ public class User {
 
     public void setDateOfRegistration(LocalDate dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
+    }
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
     }
 }

@@ -7,36 +7,65 @@ import java.util.List;
 @Entity
 public class Item {
 
+//    @OneToMany(mappedBy = "itemsUser")
+//    private List<User> userList;
+
+    @OneToOne(mappedBy = "item")
+    private Type type;
+
+    @OneToOne(mappedBy = "item")
+    private UserItem userList;
+
+    @OneToMany(mappedBy = "item")
+    private List<RentHistory> rentHistories;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToMany(mappedBy = "itemsUser")
-    private List<User> userList;
 
     private String name;
     private String author;
     private String description;
     private LocalDate dateAdded;
     private byte[] photo;
+    private LocalDate dateOfRent = null;
+    private Boolean isAvailable;
 
-    public Item() {  }
+    public Item() {
+    }
 
-    public Item(Long id, String name, String author, String description, LocalDate dateAdded, byte[] photo) {
-        this.id = id;
+    public Item(String name, String author, String description, LocalDate dateAdded, byte[] photo, LocalDate dateOfRent, Boolean isAvailable) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.dateAdded = dateAdded;
         this.photo = photo;
+        this.dateOfRent = dateOfRent;
+        this.isAvailable = isAvailable;
     }
 
-    public List<User> getUserList() {
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public UserItem getUserList() {
         return userList;
     }
 
-    public void setUserList(List<User> userList) {
+    public void setUserList(UserItem userList) {
         this.userList = userList;
+    }
+
+    public List<RentHistory> getRentHistories() {
+        return rentHistories;
+    }
+
+    public void setRentHistories(List<RentHistory> rentHistories) {
+        this.rentHistories = rentHistories;
     }
 
     public Long getId() {
@@ -85,5 +114,21 @@ public class Item {
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    public LocalDate getDateOfRent() {
+        return dateOfRent;
+    }
+
+    public void setDateOfRent(LocalDate dateOfRent) {
+        this.dateOfRent = dateOfRent;
+    }
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
     }
 }

@@ -19,27 +19,25 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-
-    public Optional<Role> findById(Long id){
+    public Optional<Role> findById(Long id) {
         return roleRepository.findById(id);
     }
 
-    public Iterable<Role> findAll(){
+    public Iterable<Role> findAll() {
         return roleRepository.findAll();
     }
 
-    public Role save (Role role){
-        return roleRepository. save(role);
+    public Role save(Role role) {
+        return roleRepository.save(role);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         roleRepository.deleteById(id);
     }
 
-
     @EventListener(ApplicationReadyEvent.class)
-    public void fillDB(){
-        save(new Role(1L,"admin"));
-        save(new Role(2L,"user"));
+    public void fillDB() {
+        save(new Role("admin", true));
+        save(new Role("user", true));
     }
 }
